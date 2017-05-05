@@ -67,27 +67,21 @@
   },
   {
     "remote": "omnirom",
-    "repository": "android_kernel_motorola_msm8996",
-    "target_path": "kernel/motorola/msm8996",
+    "repository": "android_kernel_motorola_msm8953",
+    "target_path": "kernel/motorola/msm8953",
     "revision": "android-7.1"
   },
   {
-    "remote": "github",
-    "repository": "LineageOS/android_system_qcom",
+    "remote": "omnirom",
+    "repository": "android_system_qcom",
     "target_path": "system/qcom",
-    "revision": "cm-14.1"
+    "revision": "android-7.1"
   },
   {
-    "remote": "github",
-    "repository": "LineageOS/android_external_bson",
+    "remote": "omnirom",
+    "repository": "android_external_bson",
     "target_path": "external/bson",
-    "revision": "cm-14.1"
-  },
-  {
-    "remote": "github",
-    "repository": "LineageOS/android_external_stlport",
-    "target_path": "external/stlport",
-    "revision": "cm-14.1"
+    "revision": "android-7.1"
   }
 ]
 
