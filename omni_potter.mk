@@ -27,9 +27,6 @@ $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, device/motorola/potter/full_potter.mk)
 $(call inherit-product, vendor/motorola/potter/potter-vendor.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
-
 # Boot animation
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 1920
