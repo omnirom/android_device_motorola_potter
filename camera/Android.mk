@@ -3,6 +3,8 @@ include $(CLEAR_VARS)
 
 LOCAL_C_INCLUDES := system/media/camera/include
 
+LOCAL_CLANG_CFLAGS += -Wno-unused-variable -Wno-unused-function -Wno-missing-field-initializers -Wno-unused-parameter
+
 LOCAL_SRC_FILES := \
     CameraWrapper.cpp
 
