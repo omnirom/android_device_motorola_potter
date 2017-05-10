@@ -97,6 +97,9 @@ TARGET_CRYPTFS_HW_PATH := $(DEVICE_PATH)/cryptfs_hw
 
 TARGET_PROVIDES_POWERHAL := true
 
+# Disable dex-preoptimization
+WITH_DEXPREOPT := false
+
 # Display
 HAVE_ADRENO_SOURCE:= false
 BOARD_USES_ADRENO := true
