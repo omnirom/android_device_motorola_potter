@@ -334,7 +334,8 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libprotobuf-cpp-full \
     libxml2 \
-    libshim_ril
+    libshim_ril \
+    android.hardware.radio.config@1.0
 
 #RIL
 PRODUCT_PACKAGES += \
