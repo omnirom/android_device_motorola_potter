@@ -52,3 +52,21 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_MODULE := libshim_buffer
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
+
+# RIL
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := ASensorManager.cpp
+LOCAL_SHARED_LIBRARIES := android.hardware.sensors@1.0
+LOCAL_STATIC_LIBRARIES := android.hardware.sensors@1.0-convert
+LOCAL_MODULE := libshim_ril
+LOCAL_MODULE_TAGS := optional
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := libqsap_shim.c
+LOCAL_SHARED_LIBRARIES := libqsap_sdk liblog libcutils libutils
+LOCAL_C_INCLUDES := $(TOP)/system/qcom/softap/sdk
+LOCAL_MODULE := libqsap_shim
+LOCAL_MODULE_TAGS := optional
+LOCAL_PROPRIETARY_MODULE := true
+include $(BUILD_SHARED_LIBRARY)
