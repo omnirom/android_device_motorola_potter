@@ -826,12 +826,11 @@ service vendor.loc_launcher /system/vendor/bin/loc_launcher
     group gps
     writepid /dev/cpuset/system-background/tasks
 
-service fm_dl /vendor/bin/init.qti.fm.sh
-    class late_start
-    user system
-    group system
-    disabled
-    oneshot
+on property:hw.fm.init=0
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
+
+on property:hw.fm.init=1
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
 
 on property:crypto.driver.load=1
      insmod /system/lib/modules/qce.ko
