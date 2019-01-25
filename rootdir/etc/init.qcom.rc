@@ -866,7 +866,7 @@ on charger
     setprop persist.sys.usb.config mass_storage
     write /sys/class/leds/white/trigger "battery-full"
 
-on property:sys.boot_completed=1
+on property:service.bootnaim.exit=1
     write /dev/kmsg "Boot completed "
     setprop sys.io.scheduler bfq
 
