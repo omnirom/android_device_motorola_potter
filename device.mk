@@ -201,7 +201,7 @@ PRODUCT_PACKAGES += \
 
 # health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-service.potter
+    android.hardware.health@2.0-service
 
 # IRSC
 PRODUCT_COPY_FILES += \
@@ -298,14 +298,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.2-service.msm8953-libperfmgr
-
-#Perf configs
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/perf/commonresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/commonresourceconfigs.xml \
-    $(LOCAL_PATH)/configs/perf/perfboostsconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfboostsconfig.xml \
-    $(LOCAL_PATH)/configs/perf/targetconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetconfig.xml \
-    $(LOCAL_PATH)/configs/perf/targetresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetresourceconfigs.xml
+    android.hardware.power@1.1-service-qti
 
 # Qualcomm
 PRODUCT_COPY_FILES += \
@@ -330,7 +323,8 @@ PRODUCT_COPY_FILES += \
 
 # Powerhint configuration file
 PRODUCT_COPY_FILES += \
-     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+     $(LOCAL_PATH)/configs/powerhint.xml:system/etc/powerhint.xml \
+     $(LOCAL_PATH)/configs/perfboostsconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfboostsconfig.xml
 
 # Releasetools script
 PRODUCT_COPY_FILES += \
@@ -390,7 +384,7 @@ PRODUCT_PACKAGES += \
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
-    android.hardware.vibrator@1.0-service.potter
+    android.hardware.vibrator@1.0-service
 
 PRODUCT_PACKAGES += \
     vndk-sp

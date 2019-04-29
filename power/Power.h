@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2018 The Android Open Source Project
+ * Copyright (C) 2017 The Android Open Source Project
+ * Copyright (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,69 +15,62 @@
  * limitations under the License.
  */
 
-#ifndef ANDROID_HARDWARE_POWER_V1_2_POWER_H
-#define ANDROID_HARDWARE_POWER_V1_2_POWER_H
+#ifndef ANDROID_HARDWARE_POWER_V1_1_POWER_H
+#define ANDROID_HARDWARE_POWER_V1_1_POWER_H
 
-#include <atomic>
-#include <thread>
-
-#include <android/hardware/power/1.2/IPower.h>
+#ifdef V1_0_HAL
+#include <android/hardware/power/1.0/IPower.h>
+#else
+#include <android/hardware/power/1.1/IPower.h>
+#endif
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
-#include <perfmgr/HintManager.h>
-
-#include "InteractionHandler.h"
+#include <hardware/power.h>
 
 namespace android {
 namespace hardware {
 namespace power {
-namespace V1_2 {
+#ifdef V1_0_HAL
+namespace V1_0 {
+#else
+namespace V1_1 {
+#endif
 namespace implementation {
 
 using ::android::hardware::power::V1_0::Feature;
-using ::android::hardware::power::V1_2::IPower;
+using ::android::hardware::power::V1_0::PowerHint;
+#ifdef V1_0_HAL
+using ::android::hardware::power::V1_0::IPower;
+#else
+using ::android::hardware::power::V1_1::IPower;
+#endif
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::InteractionHandler;
-using PowerHint_1_0 = ::android::hardware::power::V1_0::PowerHint;
-using PowerHint_1_2 = ::android::hardware::power::V1_2::PowerHint;
-using ::android::perfmgr::HintManager;
-
-constexpr char kPowerHalInitProp[] = "vendor.powerhal.init";
 
 struct Power : public IPower {
     // Methods from ::android::hardware::power::V1_0::IPower follow.
 
     Power();
 
-    Return<void> setInteractive(bool /* interactive */) override;
-    Return<void> powerHint(PowerHint_1_0 hint, int32_t data) override;
+    Return<void> setInteractive(bool interactive) override;
+    Return<void> powerHint(PowerHint hint, int32_t data) override;
     Return<void> setFeature(Feature feature, bool activate) override;
     Return<void> getPlatformLowPowerStats(getPlatformLowPowerStats_cb _hidl_cb) override;
 
+#ifndef V1_0_HAL
     // Methods from ::android::hardware::power::V1_1::IPower follow.
     Return<void> getSubsystemLowPowerStats(getSubsystemLowPowerStats_cb _hidl_cb) override;
-    Return<void> powerHintAsync(PowerHint_1_0 hint, int32_t data) override;
-
-    // Methods from ::android::hardware::power::V1_2::IPower follow.
-    Return<void> powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) override;
+    Return<void> powerHintAsync(PowerHint hint, int32_t data) override;
+#endif
 
     // Methods from ::android::hidl::base::V1_0::IBase follow.
 
- private:
-    static bool isSupportedGovernor();
-
-    std::shared_ptr<HintManager> mHintManager;
-    std::unique_ptr<InteractionHandler> mInteractionHandler;
-    std::atomic<bool> mSustainedPerfModeOn;
-    std::atomic<bool> mReady;
-    std::thread mInitThread;
 };
 
 }  // namespace implementation
-}  // namespace V1_2
+}  // namespace V1_0/1
 }  // namespace power
 }  // namespace hardware
 }  // namespace android
 
-#endif  // ANDROID_HARDWARE_POWER_V1_2_POWER_H
+#endif  // ANDROID_HARDWARE_POWER_V1_1_POWER_H
