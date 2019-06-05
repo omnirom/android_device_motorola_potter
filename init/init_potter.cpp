@@ -77,7 +77,10 @@ void vendor_load_properties()
     if (platform != ANDROID_TARGET)
         return;
 
-    std::string sku = android::base::GetProperty("ro.boot.hardware.sku", "");
+    // sku
+    std::string sku = "Moto G5 Plus (";
+    sku.append(android::base::GetProperty("ro.boot.hardware.sku", ""));
+    sku.append(")");
     property_set("ro.product.model", sku.c_str());
 
     // fingerprint
